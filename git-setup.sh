@@ -2,13 +2,7 @@
 
 #This script allows a user to setup a local git repository from scratch or by cl#oning an existing remote git repository.
 
-echo "Lets get your local git repository setup"
-echo "Select from the following options"
-echo "1) Initialize a new local git repository"
-echo "2) Clone a remote git repository"
-read OPTION
-
-if [ "$OPTION" = "1" ]; then
+create_repo() {
 	#Ask the user for information on where to setup the project
 	echo "Enter the name of your git project:" && read PROJECT_NAME
 	echo "Enter the path to where the project should be created:" && 
@@ -47,7 +41,9 @@ if [ "$OPTION" = "1" ]; then
 	fi
 	echo "\nDone"
 
-elif [ "$OPTION" = "2" ]; then
+}
+
+clone_repo() {
 	#Ask for what and where to clone to
 	echo "Enter the URL of the remote git repository:" && read URL	
 	echo "Enter the name of the local git repository:" && read PROJECT_NAME
@@ -60,6 +56,18 @@ elif [ "$OPTION" = "2" ]; then
 	git clone "${URL}" "${FULL_PATH}"
 
 	echo "\nDone"
+}
+
+echo "Lets get your local git repository setup"
+echo "Select from the following options"
+echo "1) Initialize a new local git repository"
+echo "2) Clone a remote git repository"
+read OPTION
+
+if [ "$OPTION" = "1" ]; then
+	create_repo
+elif [ "$OPTION" = "2" ]; then
+	clone_repo
 else 
 	echo "Goodbye"
 fi
