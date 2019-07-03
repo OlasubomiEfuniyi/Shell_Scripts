@@ -1,4 +1,5 @@
 #!/bin/sh
+. ./greetings.sh
 
 #This script allows a user to setup a local git repository from scratch or by cl#oning an existing remote git repository.
 
@@ -22,7 +23,7 @@ create_repo() {
 
 	#Setup .gitignore
 	touch "./.gitignore"
-	echo "Specify the files you want git to ignore here. Remember to erase"              "this line" > "./.gitignore"
+	echo "Specify the files you want git to ignore here. Remember to erase"              "this line." > "./.gitignore"
 	${EDITOR:-vi} "./.gitignore"
 
 	#Setup remotes for the local git repository
@@ -58,10 +59,10 @@ clone_repo() {
 	echo "\nDone"
 }
 
-echo "Lets get your local git repository setup"
-echo "Select from the following options"
-echo "1) Initialize a new local git repository"
-echo "2) Clone a remote git repository"
+echo "`time_of_day_greeting` `whoami`. Lets get your local git repository setup."
+echo "Select from the following options:"
+echo "1) Initialize a new local git repository."
+echo "2) Clone a remote git repository."
 read OPTION
 
 if [ "$OPTION" = "1" ]; then
@@ -69,7 +70,7 @@ if [ "$OPTION" = "1" ]; then
 elif [ "$OPTION" = "2" ]; then
 	clone_repo
 else 
-	echo "Goodbye"
+	echo "Goodbye!"
 fi
 
 
